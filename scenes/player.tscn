@@ -1,0 +1,137 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://audio/footstep1.wav" type="AudioStream" id=3]
+[ext_resource path="res://sprites/feather.png" type="Texture" id=4]
+[ext_resource path="res://audio/footstep2.wav" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 12 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 18 ) ],
+"loop": true,
+"name": "bop",
+"speed": 8.5
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "collision",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 15 ) ],
+"loop": false,
+"name": "flap",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="Curve" id=26]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.255932, 150.545 ), 0.0, 0.0, 0, 0, Vector2( 0.747458, -124.364 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="ParticlesMaterial" id=28]
+flag_disable_z = true
+direction = Vector3( 1, -0.529, 0 )
+gravity = Vector3( 0, 12, 0 )
+initial_velocity = 45.6
+initial_velocity_random = 0.35
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -9.77
+linear_accel_random = 0.17
+radial_accel = -5.86
+radial_accel_random = 0.62
+angle = -14.1
+angle_random = 1.0
+angle_curve = SubResource( 27 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 3
+script = ExtResource( 2 )
+footsteps = [ ExtResource( 3 ), ExtResource( 5 ) ]
+gravity = 10.0
+jump_strength = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -3.5 )
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 8 )
+animation = "bop"
+playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 48, 48 )
+collision_mask = 2
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 7.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+process_material = SubResource( 28 )
+texture = ExtResource( 4 )
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer2D_finished"]

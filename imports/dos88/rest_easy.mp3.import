@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rest_easy.mp3-50d577515217983558c0fa7af295c85c.mp3str"
+
+[deps]
+
+source_file="res://imports/dos88/rest_easy.mp3"
+dest_files=[ "res://.import/rest_easy.mp3-50d577515217983558c0fa7af295c85c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

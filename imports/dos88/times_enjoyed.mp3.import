@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/times_enjoyed.mp3-7ffe4c3cf8b2851c7e21120f20157f10.mp3str"
+
+[deps]
+
+source_file="res://imports/dos88/times_enjoyed.mp3"
+dest_files=[ "res://.import/times_enjoyed.mp3-7ffe4c3cf8b2851c7e21120f20157f10.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

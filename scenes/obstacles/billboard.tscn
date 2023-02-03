@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/obstacle.gd" type="Script" id=1]
+[ext_resource path="res://building_tileset.tres" type="TileSet" id=2]
+
+[node name="Building1" type="KinematicBody2D"]
+position = Vector2( 0, 270 )
+collision_layer = 2
+script = ExtResource( 1 )
+goes_up_and_down = true
+
+[node name="BackTileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+
+[node name="FrontTileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( -262144, 0, 0, -262143, 0, 1, -262142, 0, 1, -262141, 0, 1, -262140, 0, 1, -262139, 0, 1, -262138, 0, 2, -196608, 0, 65536, -196607, 0, 65537, -196606, 0, 65537, -196605, 0, 65537, -196604, 0, 65537, -196603, 0, 65537, -196602, 0, 65538, -131072, 0, 65536, -131071, 0, 65537, -131070, 0, 65537, -131069, 0, 65537, -131068, 0, 65537, -131067, 0, 65537, -131066, 0, 65538, -65536, 0, 131072, -65535, 0, 131073, -65534, 0, 131073, -65533, 0, 131073, -65532, 0, 131073, -65531, 0, 131073, -65530, 0, 131074 )

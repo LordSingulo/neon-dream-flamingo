@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/summer_forever.mp3-bc994b41be0bcab64874109928634256.mp3str"
+
+[deps]
+
+source_file="res://imports/dos88/summer_forever.mp3"
+dest_files=[ "res://.import/summer_forever.mp3-bc994b41be0bcab64874109928634256.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
