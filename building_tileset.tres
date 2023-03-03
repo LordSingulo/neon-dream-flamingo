@@ -1,7 +1,5 @@
 [gd_resource type="TileSet" load_steps=11 format=2]
 
-[ext_resource path="res://sprites/building_tileset.png" type="Texture" id=1]
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
@@ -29,9 +27,12 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
+[sub_resource type="StreamTexture" id=10]
+load_path = "res://.import/building_tileset.png-0e86b5cf80cc4684c2cfd53ecffebbc1.stex"
+
 [resource]
 0/name = "Purple Tiles"
-0/texture = ExtResource( 1 )
+0/texture = SubResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 96, 96 )
@@ -109,7 +110,7 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 } ]
 0/z_index = 0
 1/name = "Wall"
-1/texture = ExtResource( 1 )
+1/texture = SubResource( 10 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 96, 0, 32, 32 )

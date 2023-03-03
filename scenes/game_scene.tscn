@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
-[ext_resource path="res://scenes/obstacles/buildings/building_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/billboard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/background/trees.png" type="Texture" id=4]
 [ext_resource path="res://sprites/background/buildings.png" type="Texture" id=5]
@@ -9,10 +9,10 @@
 [ext_resource path="res://sprites/background/sky.png" type="Texture" id=7]
 [ext_resource path="res://sprites/background/houses.png" type="Texture" id=8]
 [ext_resource path="res://imports/dos88/summer_forever.mp3" type="AudioStream" id=9]
-[ext_resource path="res://scenes/obstacles/buildings/building_2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obstacles/poles.tscn" type="PackedScene" id=10]
 [ext_resource path="res://fonts/neon vampire/fastup_medium.tres" type="DynamicFont" id=11]
 [ext_resource path="res://fonts/neon vampire/neon_vampire_i_big.tres" type="DynamicFont" id=12]
-[ext_resource path="res://scenes/obstacles/buildings/building_3.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/obstacles/roof.tscn" type="PackedScene" id=13]
 [ext_resource path="res://imports/dos88/far_away.mp3" type="AudioStream" id=14]
 [ext_resource path="res://imports/dos88/flow_state.mp3" type="AudioStream" id=15]
 [ext_resource path="res://imports/dos88/times_enjoyed.mp3" type="AudioStream" id=16]
@@ -155,6 +155,7 @@ texture = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 270 )
+scale = Vector2( 2, 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 480, 270 )

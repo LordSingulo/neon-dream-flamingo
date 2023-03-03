@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/building_tileset.png-0e86b5cf80cc4684c2cfd53ecffebbc1.stex"
+path="res://.import/poles.png-e953085e4b57537c54d0d45a1dffd94b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/building_tileset.png"
-dest_files=[ "res://.import/building_tileset.png-0e86b5cf80cc4684c2cfd53ecffebbc1.stex" ]
+source_file="res://sprites/obstacles/poles.png"
+dest_files=[ "res://.import/poles.png-e953085e4b57537c54d0d45a1dffd94b.stex" ]
 
 [params]
 

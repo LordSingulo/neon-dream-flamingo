@@ -114,6 +114,7 @@ shape = SubResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
 animation = "bop"
+frame = 2
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -121,7 +122,7 @@ stream = ExtResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 48, 48 )
+cast_to = Vector2( 32, 48 )
 collision_mask = 2
 
 [node name="Particles2D" type="Particles2D" parent="."]
