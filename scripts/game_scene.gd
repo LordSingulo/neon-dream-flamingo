@@ -9,17 +9,24 @@ onready var obstacle_spawn_timer: Timer = $ObstacleSpawnTimer
 
 export(Array, AudioStreamMP3) var songs
 export(Array, Resource) var obstacles
+export(Resource) var billboard
 
+var spawned_obstacle_count = 0
 var spawned_obstacles: Array
+
 var game_over = false
+var playlist: Array
 var song_index = 0
+
 func _ready():
 	var _error = Globals.connect("game_ended", self, "on_game_ended")
 	_error = Globals.connect("done_waiting", self, "on_done_waiting")
 	_error = Globals.connect("game_reset", self, "on_game_reset")
 	game_over_animation_player.play("RESET")
-	randomize()
-	song_index = randi() % songs.size()
+	
+	playlist = songs
+	playlist.shuffle()
+	
 	music_player.stream = songs[song_index]
 	music_player.play()
 
@@ -40,18 +47,25 @@ func on_done_waiting():
 
 func spawn_obstacle():
 	if not game_over:
-		var new_obstacle = obstacles[randf() * obstacles.size()].instance()
+		var new_obstacle
+		if spawned_obstacle_count % 6 != 0 or spawned_obstacle_count == 0:
+			new_obstacle = obstacles[randf() * obstacles.size()].instance()
+		else:
+			new_obstacle = billboard.instance()
+		
 		new_obstacle.position.x = ProjectSettings.get("display/window/size/width")
 		get_tree().current_scene.add_child(new_obstacle)
 		spawned_obstacles.append(new_obstacle)
-		obstacle_spawn_timer.start(randf() + 1.5)
+		obstacle_spawn_timer.start(randf() + 2.0)
+		spawned_obstacle_count += 1
 
 func on_game_reset():
 	game_over = false
+	spawned_obstacle_count = 0
 	for obstacle in spawned_obstacles:
 		obstacle.queue_free()
 	spawned_obstacles.clear()
-	player.position.y = 270
+	player.position = Vector2(240, 270)
 	game_over_animation_player.play("RESET")
 	reset_button.release_focus()
 	obstacle_spawn_timer.stop()
@@ -61,7 +75,7 @@ func _on_RetryButton_pressed():
 
 func _on_MusicPlayer_finished():
 	song_index += 1
-	if song_index >= songs.size():
+	if song_index >= playlist.size():
 		song_index = 0
-	music_player.stream = songs[song_index]
+	music_player.stream = playlist[song_index]
 	music_player.play()

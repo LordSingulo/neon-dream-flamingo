@@ -12,6 +12,7 @@ func _ready():
 func _process(_delta):
 	if !game_ended:
 		var collision = move_and_collide(Vector2.LEFT * move_speed)
+		position.y = 348
 		if collision:
 			Globals.emit_signal("game_ended")
 		if position.x <= 0:

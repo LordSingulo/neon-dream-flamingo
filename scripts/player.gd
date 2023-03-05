@@ -17,6 +17,7 @@ var vertical_speed = 0.0
 var waiting = true
 var landed = false
 var footstep_index = 0
+var game_ended = false
 
 func _ready():
 	var _error = Globals.connect("game_ended", self, "on_game_ended")
@@ -31,13 +32,15 @@ func _process(delta):
 	
 	#Run on surfaces
 	if raycast.is_colliding():
-		collider.shape.extents = Vector2(32, 19)
-		collider.position.y = 12
+		collider.position.y = 0
+		collider.shape.extents = Vector2(32, 21)
+		sprite.position.y = -11
 		if sprite.animation != "run":
 			sprite.play("run")
 	else:
 		collider.shape.extents = Vector2(32, 12)
 		collider.position.y = -3.5
+		sprite.position.y = 0
 		if sprite.animation == "run":
 			sprite.play("bop")
 	
@@ -70,6 +73,9 @@ func _input(event):
 			Globals.disconnect("done_waiting", self, "on_done_waiting")
 
 func on_game_ended():
+	raycast.enabled = false
+	game_ended = true
+	collision_layer = 0
 	sprite.play("collision")
 	audio_player.stream = collision_sound
 	audio_player.play()
@@ -81,6 +87,9 @@ func on_done_waiting():
 	waiting = false
 
 func on_game_reset():
+	raycast.enabled = true
+	game_ended = false
+	collision_layer = 1
 	feathers.restart()
 	feathers.emitting = false
 	waiting = true
@@ -102,7 +111,7 @@ func _on_GroundCheck_body_exited(_body):
 	sprite.play("flap")
 
 func _on_AudioStreamPlayer2D_finished():
-	if landed:
+	if landed and raycast.enabled:
 		footstep_index += 1
 		if footstep_index >= footsteps.size():
 			footstep_index = 0
