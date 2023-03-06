@@ -8,4 +8,3 @@ script = ExtResource( 1 )
 song_name = "Flow State"
 artist_name = "DOS-88"
 song = ExtResource( 2 )
-speed = 0.72

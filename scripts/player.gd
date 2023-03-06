@@ -32,17 +32,15 @@ func _process(delta):
 	
 	#Run on surfaces
 	if raycast.is_colliding():
-		collider.shape.radius = 17
-		collider.shape.height = 30
-		collider.position = Vector2(0, 3)
-		sprite.position.y = -11
+		collider.shape.extents = Vector2(32, 12)
+		collider.position.y = -12
+		sprite.position.y = -32
 		if sprite.animation != "run":
 			sprite.play("run")
 	else:
-		collider.shape.radius = 6
-		collider.shape.height = 50
-		collider.position = Vector2(0, 3)
-		sprite.position.y = 0
+		collider.shape.extents = Vector2(32, 6)
+		collider.position.y = -6
+		sprite.position.y = -7
 		if sprite.animation == "run":
 			sprite.play("bop")
 	
@@ -60,7 +58,7 @@ func _process(delta):
 			audio_player.stop()
 	
 	# End the game if player goes off screen
-	if position.y - collider.shape.radius > ProjectSettings.get("display/window/size/height"):
+	if position.y - collider.shape.extents.y > ProjectSettings.get("display/window/size/height"):
 		Globals.emit_signal("game_ended")
 
 func _input(event):

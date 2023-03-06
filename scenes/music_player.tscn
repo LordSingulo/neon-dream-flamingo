@@ -60,4 +60,4 @@ anims/fade-out = SubResource( 10 )
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
 
-[connection signal="finished" from="Player" to="." method="_on_MusicPlayer_finished"]
+[connection signal="finished" from="Player" to="." method="_on_Player_finished"]

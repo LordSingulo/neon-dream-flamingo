@@ -20,14 +20,10 @@ func _ready():
 	playlist = songs
 	playlist.shuffle()
 	
-	# Workaround to get music synced with background
-	yield(get_tree(), "idle_frame")
-	play_song(song_index)
-
-func _on_MusicPlayer_finished():
-	song_index += 1
-	if song_index >= playlist.size():
-		song_index = 0
+	# MP3s are assumed to be looped, can't be manually switched off in editor
+	for song_info in playlist:
+		song_info.song.loop = false
+	
 	play_song(song_index)
 
 func play_song(index: int):
@@ -35,3 +31,9 @@ func play_song(index: int):
 	player.play()
 	now_playing_label.text = playlist[index].artist_name + " - " + playlist[index].song_name
 	now_playing_animation_player.play("fade-out")
+
+func _on_Player_finished():
+	song_index += 1
+	if song_index >= playlist.size():
+		song_index = 0
+	play_song(song_index)
