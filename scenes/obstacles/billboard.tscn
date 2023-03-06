@@ -1,23 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/obstacle.gd" type="Script" id=1]
 [ext_resource path="res://sprites/obstacles/billboard.png" type="Texture" id=2]
-[ext_resource path="res://fonts/fastup/fastup_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/digital disco/digital_disco_large.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scripts/billboard_text.gd" type="Script" id=4]
+[ext_resource path="res://scenes/diamond.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 208, 20 )
+extents = Vector2( 277, 26.5 )
 
 [node name="Billboard" type="KinematicBody2D"]
 position = Vector2( 0, 348 )
-scale = Vector2( 1.5, 1.5 )
 z_index = -1
 collision_layer = 2
 script = ExtResource( 1 )
 goes_up_and_down = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 208, -40 )
+position = Vector2( 278, -64 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Sprite"]
@@ -26,16 +26,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -448.0
-margin_top = -311.0
-margin_right = -65.0
-margin_bottom = -246.0
+margin_left = -597.0
+margin_top = -512.0
+margin_right = -86.0
+margin_bottom = -224.0
 custom_fonts/font = ExtResource( 3 )
 text = "KEEP IT UP"
 align = 1
+valign = 1
 script = ExtResource( 4 )
 messages = [ "KEEP IT UP", "GOOD JOB", "AMAZING", "SO PROUD", "THATS IT" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 208, 4 )
+position = Vector2( 277, -5.5 )
 shape = SubResource( 1 )
+
+[node name="Diamond" parent="." instance=ExtResource( 5 )]
+position = Vector2( 276, -64 )
+
+[node name="Diamond2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 148, -64 )
+
+[node name="Diamond3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 404, -64 )

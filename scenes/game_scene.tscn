@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/obstacles/billboard.tscn" type="PackedScene" id=2]
@@ -8,20 +8,15 @@
 [ext_resource path="res://sprites/background/synthwave_sun.png" type="Texture" id=6]
 [ext_resource path="res://sprites/background/sky.png" type="Texture" id=7]
 [ext_resource path="res://sprites/background/houses.png" type="Texture" id=8]
-[ext_resource path="res://imports/dos88/summer_forever.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/music_player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/obstacles/poles.tscn" type="PackedScene" id=10]
-[ext_resource path="res://fonts/neon vampire/fastup_medium.tres" type="DynamicFont" id=11]
-[ext_resource path="res://fonts/neon vampire/neon_vampire_i_big.tres" type="DynamicFont" id=12]
+[ext_resource path="res://fonts/lychee soda/lychee_soda_large.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/obstacles/roof.tscn" type="PackedScene" id=13]
-[ext_resource path="res://imports/dos88/far_away.mp3" type="AudioStream" id=14]
-[ext_resource path="res://imports/dos88/flow_state.mp3" type="AudioStream" id=15]
-[ext_resource path="res://imports/dos88/times_enjoyed.mp3" type="AudioStream" id=16]
-[ext_resource path="res://imports/dos88/rest_easy.mp3" type="AudioStream" id=17]
 [ext_resource path="res://scenes/obstacles/high-rise.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/obstacles/high-rise-roof.tscn" type="PackedScene" id=19]
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 480, 10 )
+[ext_resource path="res://scenes/obstacles/high-rise-opening.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/score.tscn" type="PackedScene" id=21]
+[ext_resource path="res://fonts/lychee soda/lychee_soda_medium.tres" type="DynamicFont" id=22]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.196078, 0.192157, 0.231373, 0 )
@@ -29,7 +24,7 @@ bg_color = Color( 0.196078, 0.192157, 0.231373, 0 )
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("GameOverCanvas/GameOverContainer/TitleContainer:margin_left")
+tracks/0/path = NodePath("GameOverCanvas/GameOverContainer/RetryButton:margin_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -38,10 +33,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -839.0 ]
+"values": [ 836.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GameOverCanvas/GameOverContainer/RetryButton:margin_left")
+tracks/1/path = NodePath("GameOverCanvas/Panel:custom_styles/panel:bg_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -50,10 +45,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 836.0 ]
+"values": [ Color( 0.196078, 0.192157, 0.231373, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("GameOverCanvas/Panel:custom_styles/panel:bg_color")
+tracks/2/path = NodePath("GameOverCanvas/GameOverContainer/VBoxContainer:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -62,7 +57,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.196078, 0.192157, 0.231373, 0 ) ]
+"values": [ Vector2( -850, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -81,7 +76,7 @@ tracks/0/keys = {
 "values": [ Color( 0.196078, 0.192157, 0.231373, 0 ), Color( 0.196078, 0.192157, 0.231373, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GameOverCanvas/GameOverContainer/TitleContainer:margin_left")
+tracks/1/path = NodePath("GameOverCanvas/GameOverContainer/RetryButton:margin_left")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -90,10 +85,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 1.3, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -838.0, 0.0 ]
+"values": [ 836.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("GameOverCanvas/GameOverContainer/RetryButton:margin_left")
+tracks/2/path = NodePath("GameOverCanvas/GameOverContainer/VBoxContainer:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -102,21 +97,16 @@ tracks/2/keys = {
 "times": PoolRealArray( 1.3, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 836.0, 0.0 ]
+"values": [ Vector2( -850, 0 ), Vector2( 0, 0 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 480, 10 )
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
-songs = [ ExtResource( 9 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ]
-obstacles = [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 19 ) ]
+obstacles = [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ]
 billboard = ExtResource( 2 )
-
-[node name="CeilingStaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CeilingStaticBody2D"]
-position = Vector2( 480, -10 )
-shape = SubResource( 5 )
 
 [node name="BackgroundCanvas" type="CanvasLayer" parent="."]
 
@@ -153,16 +143,8 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="SunSprite" type="Sprite" parent="BackgroundCanvas/SkyCanvas"]
-position = Vector2( 484, 270 )
+position = Vector2( 484, 302 )
 texture = ExtResource( 6 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 240, 270 )
-scale = Vector2( 2, 2 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 480, 270 )
-current = true
 
 [node name="GameOverCanvas" type="CanvasLayer" parent="."]
 
@@ -173,51 +155,112 @@ custom_styles/panel = SubResource( 3 )
 
 [node name="GameOverContainer" type="VBoxContainer" parent="GameOverCanvas"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -349.5
-margin_top = 101.0
+margin_top = -141.5
 margin_right = 349.5
-margin_bottom = 213.0
+margin_bottom = 141.5
 custom_constants/separation = 20
 
-[node name="TitleContainer" type="HBoxContainer" parent="GameOverCanvas/GameOverContainer"]
-margin_left = -839.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverCanvas/GameOverContainer"]
+margin_left = -850.0
+margin_right = -151.0
+margin_bottom = 208.0
+alignment = 1
+
+[node name="TitleContainer" type="HBoxContainer" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
 margin_right = 699.0
-margin_bottom = 138.0
+margin_bottom = 64.0
 custom_constants/separation = 20
+alignment = 1
 
-[node name="GameLabel" type="Label" parent="GameOverCanvas/GameOverContainer/TitleContainer"]
-margin_right = 337.0
-margin_bottom = 138.0
+[node name="GameLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer/TitleContainer"]
+margin_left = 199.0
+margin_right = 339.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 12 )
 text = "GAME"
 
-[node name="OverLabel" type="Label" parent="GameOverCanvas/GameOverContainer/TitleContainer"]
-margin_left = 357.0
-margin_right = 681.0
-margin_bottom = 138.0
+[node name="OverLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer/TitleContainer"]
+margin_left = 359.0
+margin_right = 499.0
+margin_bottom = 64.0
 custom_colors/font_color = Color( 1, 0.364706, 0.8, 1 )
 custom_fonts/font = ExtResource( 12 )
 text = "OVER"
 
+[node name="ScoreLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 699.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 22 )
+text = "SCORE"
+align = 1
+
+[node name="Score" parent="GameOverCanvas/GameOverContainer/VBoxContainer" instance=ExtResource( 21 )]
+anchor_right = 0.0
+margin_top = 104.0
+margin_right = 699.0
+margin_bottom = 136.0
+
+[node name="BestLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 699.0
+margin_bottom = 172.0
+custom_fonts/font = ExtResource( 22 )
+text = "BEST"
+align = 1
+
+[node name="BestScore" parent="GameOverCanvas/GameOverContainer/VBoxContainer" instance=ExtResource( 21 )]
+anchor_right = 0.0
+margin_top = 176.0
+margin_right = 699.0
+margin_bottom = 208.0
+show_best = true
+
 [node name="RetryButton" type="Button" parent="GameOverCanvas/GameOverContainer"]
 margin_left = 836.0
-margin_top = 158.0
+margin_top = 228.0
 margin_right = 699.0
-margin_bottom = 229.0
-custom_fonts/font = ExtResource( 11 )
+margin_bottom = 266.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 22 )
 text = "RETRY"
 flat = true
 
-[node name="GameOverAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="GameOverAnimationPlayer" type="AnimationPlayer" parent="GameOverCanvas"]
+root_node = NodePath("../..")
 anims/RESET = SubResource( 1 )
 anims/slide_text = SubResource( 4 )
 
+[node name="ScoreCanvas" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Score" parent="ScoreCanvas" instance=ExtResource( 21 )]
+
+[node name="CeilingStaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CeilingStaticBody2D"]
+position = Vector2( 480, -10 )
+shape = SubResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 270 )
+scale = Vector2( 2, 2 )
+jump_strength = 8.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 480, 270 )
+current = true
+
 [node name="ObstacleSpawnTimer" type="Timer" parent="."]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+[node name="MusicPlayer" parent="." instance=ExtResource( 9 )]
+layer = 0
 
 [connection signal="pressed" from="GameOverCanvas/GameOverContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
 [connection signal="timeout" from="ObstacleSpawnTimer" to="." method="spawn_obstacle"]
-[connection signal="finished" from="MusicPlayer" to="." method="_on_MusicPlayer_finished"]

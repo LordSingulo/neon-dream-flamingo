@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/song_info.gd" type="Script" id=1]
+[ext_resource path="res://imports/dos-88/flow_state.mp3" type="AudioStream" id=2]
+
+[resource]
+script = ExtResource( 1 )
+song_name = "Flow State"
+artist_name = "DOS-88"
+song = ExtResource( 2 )
+speed = 0.72

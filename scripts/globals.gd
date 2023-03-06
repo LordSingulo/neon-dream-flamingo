@@ -4,20 +4,19 @@ signal game_ended
 signal paused
 signal done_waiting
 signal game_reset
+signal pickup_diamond
+
+var score = 0
+var best_score = 0
+var landed = false
+var game_over = false
 
 func _ready():
-	var _error = connect("game_ended", self, "on_signal_fired",["Game ended."])
-	_error = connect("paused", self, "on_signal_fired",["Paused."])
-	_error = connect("done_waiting", self, "on_signal_fired",["Done waiting."])
-	_error = connect("game_reset", self, "on_signal_fired",["Game reset."])
-	
-	# This is just to get debugger to shut up about the signals being unused,
-	# doesn't actually do anything since it will happen in main menu
-	print("Initialize signals.")
-	emit_signal("done_waiting")
-	emit_signal("paused")
-	emit_signal("game_ended")
-	emit_signal("game_reset")
+	var _error = connect("game_ended", self, "_on_game_ended")
+	_error = connect("game_reset", self, "_on_game_reset")
 
-func on_signal_fired(message: String):
-	print(message)
+func _on_game_ended():
+	game_over = true
+
+func _on_game_reset():
+	game_over = false

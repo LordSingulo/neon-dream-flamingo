@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/obstacle.gd" type="Script" id=1]
-[ext_resource path="res://sprites/obstacles/high-rise-roof.png" type="Texture" id=2]
+[ext_resource path="res://sprites/obstacles/high-rise-opening.png" type="Texture" id=2]
 [ext_resource path="res://scenes/diamond.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 256, 206 )
+extents = Vector2( 256, 95.5 )
 
-[node name="HighRiseRoof" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 256, 94 )
+
+[node name="HighRiseOpening" type="KinematicBody2D"]
 position = Vector2( 0, 348 )
 z_index = -1
 collision_layer = 2
@@ -18,15 +21,19 @@ goes_up_and_down = true
 position = Vector2( 256, -78 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 256, -14 )
+[node name="TopCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 256, -252.5 )
 shape = SubResource( 1 )
 
+[node name="BottomCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 256, 98 )
+shape = SubResource( 2 )
+
 [node name="Diamond" parent="." instance=ExtResource( 3 )]
-position = Vector2( 256, -252 )
+position = Vector2( 256, -32 )
 
 [node name="Diamond2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 128, -252 )
+position = Vector2( 128, -32 )
 
 [node name="Diamond3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 384, -252 )
+position = Vector2( 384, -32 )

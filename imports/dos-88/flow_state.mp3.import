@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/flow_state.mp3-6685d3fd9cf769cd0ef623cfbe3d30ee.mp3str"
+
+[deps]
+
+source_file="res://imports/dos-88/flow_state.mp3"
+dest_files=[ "res://.import/flow_state.mp3-6685d3fd9cf769cd0ef623cfbe3d30ee.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
