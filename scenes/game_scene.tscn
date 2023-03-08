@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/obstacles/billboard.tscn" type="PackedScene" id=2]
@@ -10,8 +10,11 @@
 [ext_resource path="res://sprites/background/houses.png" type="Texture" id=8]
 [ext_resource path="res://scenes/music_player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/obstacles/poles.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sprites/spacebar.png" type="Texture" id=11]
 [ext_resource path="res://fonts/lychee soda/lychee_soda_large.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/obstacles/roof.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/input__tutorial.gd" type="Script" id=14]
+[ext_resource path="res://sprites/click.png" type="Texture" id=15]
 [ext_resource path="res://scenes/obstacles/high-rise.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/obstacles/high-rise-roof.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/obstacles/high-rise-opening.tscn" type="PackedScene" id=20]
@@ -102,6 +105,38 @@ tracks/2/keys = {
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 480, 10 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 15 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "press",
+"speed": 4.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 48, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 48, 0, 48, 32 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "press",
+"speed": 4.0
+} ]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -261,6 +296,24 @@ current = true
 
 [node name="MusicPlayer" parent="." instance=ExtResource( 9 )]
 layer = 0
+
+[node name="TutorialLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 14 )
+
+[node name="SpacebarSprite" type="AnimatedSprite" parent="TutorialLayer"]
+position = Vector2( 188, 303 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 8 )
+animation = "press"
+frame = 1
+playing = true
+
+[node name="ClickSprite" type="AnimatedSprite" parent="TutorialLayer"]
+position = Vector2( 271, 296 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 13 )
+animation = "press"
+playing = true
 
 [connection signal="pressed" from="GameOverCanvas/GameOverContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
 [connection signal="timeout" from="ObstacleSpawnTimer" to="." method="spawn_obstacle"]
