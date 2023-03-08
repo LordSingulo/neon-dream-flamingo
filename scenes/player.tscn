@@ -114,7 +114,7 @@ shape = SubResource( 29 )
 position = Vector2( 0, -7 )
 frames = SubResource( 8 )
 animation = "bop"
-frame = 3
+frame = 1
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

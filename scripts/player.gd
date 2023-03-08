@@ -60,6 +60,7 @@ func _process(delta):
 	# End the game if player goes off screen
 	if position.y - collider.shape.extents.y > ProjectSettings.get("display/window/size/height"):
 		Globals.emit_signal("game_ended")
+		sprite.visible = false
 
 func _input(event):
 	if event.is_action_pressed("action_jump"):
@@ -98,6 +99,7 @@ func _on_game_reset():
 	var _error = Globals.connect("done_waiting", self, "_on_done_waiting")
 	sprite.play("bop")
 	sprite.position.x = 0
+	sprite.visible = true
 
 func _on_GroundCheck_body_entered(_body):
 	collider.shape.extents = Vector2(32, 32)

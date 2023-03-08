@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var pickup_sound = $AudioStreamPlayer
-onready var sprite = $Sprite
+onready var sprite = $AnimatedSprite
 
 func _on_Area2D_body_entered(_body):
 	pickup_sound.play()
