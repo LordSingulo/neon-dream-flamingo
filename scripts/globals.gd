@@ -16,11 +16,11 @@ func _ready():
 	_error = connect("game_reset", self, "_on_game_reset")
 	
 	# This is to stop console from saying signals aren't used. They are, just not in this file
-	_error = connect("game_ended", self, "_on_signal_fired", ["game_ended connected."])
-	_error = connect("paused", self, "_on_signal_fired", ["paused connected."])
-	_error = connect("done_waiting", self, "_on_signal_fired", ["done_waiting connected."])
-	_error = connect("game_reset", self, "_on_signal_fired", ["game_reset connected."])
-	_error = connect("pickup_diamond", self, "_on_signal_fired", ["pickup_diamond connected."])
+	_error = connect("game_ended", self, "_on_signal_fired", ["Game ended."])
+	_error = connect("paused", self, "_on_signal_fired", ["Paused."])
+	_error = connect("done_waiting", self, "_on_signal_fired", ["Done waiting."])
+	_error = connect("game_reset", self, "_on_signal_fired", ["Game reset."])
+	_error = connect("pickup_diamond", self, "_on_signal_fired", ["Diamond picked up."])
 	
 	emit_signal("game_ended")
 	emit_signal("paused")

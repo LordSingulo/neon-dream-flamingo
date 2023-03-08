@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/obstacle.gd" type="Script" id=1]
+[ext_resource path="res://scenes/diamond.tscn" type="PackedScene" id=5]
+
+[node name="ArrowOfDiamonds" type="KinematicBody2D"]
+position = Vector2( 0, 348 )
+z_index = -1
+collision_layer = 2
+script = ExtResource( 1 )
+goes_up_and_down = true
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Diamond" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -64 )
+
+[node name="Diamond4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 250, -67 )
+
+[node name="Diamond9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 378, -68 )
+
+[node name="Diamond10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 111, -65 )
+
+[node name="Diamond14" parent="." instance=ExtResource( 5 )]
+position = Vector2( 302, 128 )
+
+[node name="Diamond15" parent="." instance=ExtResource( 5 )]
+position = Vector2( 305, -253 )
+
+[node name="Diamond20" parent="." instance=ExtResource( 5 )]
+position = Vector2( 377, -194 )
+
+[node name="Diamond21" parent="." instance=ExtResource( 5 )]
+position = Vector2( 506, -66 )
+
+[node name="Diamond22" parent="." instance=ExtResource( 5 )]
+position = Vector2( 438, -138 )
+
+[node name="Diamond23" parent="." instance=ExtResource( 5 )]
+position = Vector2( 448, -3 )
+
+[node name="Diamond24" parent="." instance=ExtResource( 5 )]
+position = Vector2( 382, 65 )

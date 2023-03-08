@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/obstacles/billboard.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://scenes/obstacles/roof.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/input__tutorial.gd" type="Script" id=14]
 [ext_resource path="res://sprites/click.png" type="Texture" id=15]
+[ext_resource path="res://scripts/screen_shake.gd" type="Script" id=16]
+[ext_resource path="res://scenes/obstacles/arrow_of_diamonds.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/obstacles/high-rise.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/obstacles/high-rise-roof.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/obstacles/high-rise-opening.tscn" type="PackedScene" id=20]
@@ -140,7 +142,7 @@ animations = [ {
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
-obstacles = [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ]
+obstacles = [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 10 ), ExtResource( 13 ) ]
 billboard = ExtResource( 2 )
 
 [node name="BackgroundCanvas" type="CanvasLayer" parent="."]
@@ -193,34 +195,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -349.5
+margin_left = -172.0
 margin_top = -141.5
-margin_right = 349.5
+margin_right = 172.0
 margin_bottom = 141.5
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOverCanvas/GameOverContainer"]
 margin_left = -850.0
-margin_right = -151.0
+margin_right = -506.0
 margin_bottom = 208.0
 alignment = 1
 
 [node name="TitleContainer" type="HBoxContainer" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 64.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="GameLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer/TitleContainer"]
-margin_left = 199.0
-margin_right = 339.0
+margin_left = 22.0
+margin_right = 162.0
 margin_bottom = 64.0
 custom_fonts/font = ExtResource( 12 )
 text = "GAME"
 
 [node name="OverLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer/TitleContainer"]
-margin_left = 359.0
-margin_right = 499.0
+margin_left = 182.0
+margin_right = 322.0
 margin_bottom = 64.0
 custom_colors/font_color = Color( 1, 0.364706, 0.8, 1 )
 custom_fonts/font = ExtResource( 12 )
@@ -228,7 +230,7 @@ text = "OVER"
 
 [node name="ScoreLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
 margin_top = 68.0
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 100.0
 custom_fonts/font = ExtResource( 22 )
 text = "SCORE"
@@ -237,12 +239,12 @@ align = 1
 [node name="Score" parent="GameOverCanvas/GameOverContainer/VBoxContainer" instance=ExtResource( 21 )]
 anchor_right = 0.0
 margin_top = 104.0
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 136.0
 
 [node name="BestLabel" type="Label" parent="GameOverCanvas/GameOverContainer/VBoxContainer"]
 margin_top = 140.0
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 172.0
 custom_fonts/font = ExtResource( 22 )
 text = "BEST"
@@ -251,14 +253,14 @@ align = 1
 [node name="BestScore" parent="GameOverCanvas/GameOverContainer/VBoxContainer" instance=ExtResource( 21 )]
 anchor_right = 0.0
 margin_top = 176.0
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 208.0
 show_best = true
 
 [node name="RetryButton" type="Button" parent="GameOverCanvas/GameOverContainer"]
 margin_left = 836.0
 margin_top = 228.0
-margin_right = 699.0
+margin_right = 344.0
 margin_bottom = 266.0
 mouse_default_cursor_shape = 2
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -291,6 +293,7 @@ jump_strength = 8.0
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 480, 270 )
 current = true
+script = ExtResource( 16 )
 
 [node name="ObstacleSpawnTimer" type="Timer" parent="."]
 
@@ -305,6 +308,7 @@ position = Vector2( 188, 303 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
 animation = "press"
+frame = 1
 playing = true
 
 [node name="ClickSprite" type="AnimatedSprite" parent="TutorialLayer"]
@@ -312,6 +316,7 @@ position = Vector2( 271, 296 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 13 )
 animation = "press"
+frame = 1
 playing = true
 
 [connection signal="pressed" from="GameOverCanvas/GameOverContainer/RetryButton" to="." method="_on_RetryButton_pressed"]

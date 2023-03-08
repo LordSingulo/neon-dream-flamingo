@@ -1,8 +1,8 @@
 extends KinematicBody2D
-onready var sprite: Sprite = $Sprite
+onready var sprite = $Sprite
+
 export var move_speed = 4.0
 export var goes_up_and_down = false
-
 var game_ended = false
 
 func _ready():
@@ -16,8 +16,12 @@ func _process(_delta):
 		if collision:
 			if not Globals.landed:
 				Globals.emit_signal("game_ended")
-		if position.x <= 0 - sprite.get_rect().size.x:
-			queue_free()
+		if sprite.texture:
+			if position.x <= 0 - sprite.get_rect().size.x:
+				queue_free()
+		else:
+			if position.x <= 0 - 540:
+				queue_free()
 
 func _on_game_ended():
 	game_ended = true
