@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Obstacle",
+"language": "GDScript",
+"path": "res://scripts/obstacle.gd"
+}, {
 "base": "Resource",
 "class": "SongInfo",
 "language": "GDScript",
 "path": "res://scripts/song_info.gd"
 } ]
 _global_script_class_icons={
+"Obstacle": "",
 "SongInfo": ""
 }
 

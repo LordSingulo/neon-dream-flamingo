@@ -1,7 +1,8 @@
+class_name Obstacle
 extends KinematicBody2D
 onready var sprite = $Sprite
 
-export var move_speed = 4.0
+export var move_speed = 8.0
 export var goes_up_and_down = false
 var game_ended = false
 
@@ -9,7 +10,7 @@ func _ready():
 	var _error = Globals.connect("game_ended", self, "_on_game_ended")
 	_error = Globals.connect("game_reset", self, "_on_game_reset")
 
-func _process(_delta):
+func _physics_process(_delta):
 	if !game_ended:
 		var collision = move_and_collide(Vector2.LEFT * move_speed)
 		position.y = 348

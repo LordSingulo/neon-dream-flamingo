@@ -10,8 +10,8 @@ export(Array, AudioStreamSample) var footsteps
 export var flap_sound: AudioStreamSample = preload("res://audio/flap.wav")
 export var collision_sound: AudioStreamSample = preload("res://audio/collision.wav")
 
-export var gravity = 16.0
-export var jump_strength = 8.0
+export var gravity = 20.0
+export var jump_strength = 10.0
 
 var vertical_speed = 0.0
 var waiting = true
@@ -23,7 +23,7 @@ func _ready():
 	_error = Globals.connect("game_reset", self, "_on_game_reset")
 	sprite.play("bop")
 
-func _process(delta):
+func _physics_process(delta):
 	# Add gravity
 	if !waiting:
 		vertical_speed -= gravity * delta
@@ -80,7 +80,7 @@ func _on_game_ended():
 	audio_player.stream = collision_sound
 	audio_player.play()
 	feathers.restart()
-	set_process(false)
+	set_physics_process(false)
 	set_process_input(false)
 
 func _on_done_waiting():
@@ -93,7 +93,7 @@ func _on_game_reset():
 	feathers.emitting = false
 	waiting = true
 	Globals.landed = false
-	set_process(true)
+	set_physics_process(true)
 	set_process_input(true)
 	vertical_speed = 0
 	var _error = Globals.connect("done_waiting", self, "_on_done_waiting")

@@ -34,16 +34,16 @@ func _on_done_waiting():
 
 func spawn_obstacle():
 	if not Globals.game_over:
-		var new_obstacle
+		var new_obstacle: Obstacle
 		if spawned_obstacle_count % 6 != 0 or spawned_obstacle_count == 0:
 			new_obstacle = obstacles[randf() * obstacles.size()].instance()
 		else:
 			new_obstacle = billboard.instance()
-		
+		new_obstacle.move_speed = 8 + int(spawned_obstacle_count / 6)
 		new_obstacle.position.x = ProjectSettings.get("display/window/size/width")
 		get_tree().current_scene.add_child(new_obstacle)
-		# Minimum 1 sec, max 3
-		var wait_time = (randf() * 2.0) + 1.5
+		
+		var wait_time = (randf() * 2.0) + (clamp(5 - int(spawned_obstacle_count / 6), 1.5, 5 - int(spawned_obstacle_count / 6)))
 		obstacle_spawn_timer.start(wait_time)
 		spawned_obstacle_count += 1
 

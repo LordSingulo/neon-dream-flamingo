@@ -288,7 +288,7 @@ shape = SubResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 270 )
 scale = Vector2( 2, 2 )
-jump_strength = 8.0
+jump_strength = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 480, 270 )
@@ -308,7 +308,6 @@ position = Vector2( 188, 303 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
 animation = "press"
-frame = 1
 playing = true
 
 [node name="ClickSprite" type="AnimatedSprite" parent="TutorialLayer"]
@@ -316,7 +315,6 @@ position = Vector2( 271, 296 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 13 )
 animation = "press"
-frame = 1
 playing = true
 
 [connection signal="pressed" from="GameOverCanvas/GameOverContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
